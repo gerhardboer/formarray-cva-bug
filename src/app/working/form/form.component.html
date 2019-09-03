@@ -1,0 +1,21 @@
+<h1>Working</h1>
+<button (click)="addNewControl()">+</button>
+<br/>
+<form [formGroup]="form">
+  <ng-container formArrayName="array">
+    <div *ngFor="let c of array.controls; let i = index">
+      <ng-container [formGroupName]="i">
+        <input type="radio" formControlName="actief" [value]="true">Activeer
+        <input type="radio" formControlName="actief" [value]="false">Deactiveer
+
+        <app-cva formControlName="control" *ngIf="c.get('actief').value">
+
+        </app-cva>
+      </ng-container>
+    </div>
+
+  </ng-container>
+</form>
+<hr/>
+valid: {{form.valid}} <br/>
+value: {{form.value | json}} <br/>
